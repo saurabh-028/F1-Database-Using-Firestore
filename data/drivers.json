@@ -1,0 +1,202 @@
+[
+    {
+      "name": "Max Verstappen",
+      "team": "Red Bull Racing",
+      "age": 26,
+      "total_pole_positions": 36,
+      "total_race_wins": 56,
+      "total_points_scored": 2586.5,
+      "total_world_titles": 3,
+      "total_fastest_laps": 30
+    },
+    {
+      "name": "Sergio Pérez",
+      "team": "Red Bull Racing",
+      "age": 34,
+      "total_pole_positions": 3,
+      "total_race_wins": 6,
+      "total_points_scored": 1486,
+      "total_world_titles": 0,
+      "total_fastest_laps": 13
+    },
+    {
+      "name": "Lewis Hamilton",
+      "team": "Mercedes-AMG Petronas",
+      "age": 39,
+      "total_pole_positions": 104,
+      "total_race_wins": 103,
+      "total_points_scored": 4639.5,
+      "total_world_titles": 7,
+      "total_fastest_laps": 65
+    },
+    {
+      "name": "George Russell",
+      "team": "Mercedes-AMG Petronas",
+      "age": 26,
+      "total_pole_positions": 1,
+      "total_race_wins": 1,
+      "total_points_scored": 469,
+      "total_world_titles": 0,
+      "total_fastest_laps": 6
+    },
+    {
+      "name": "Charles Leclerc",
+      "team": "Scuderia Ferrari",
+      "age": 26,
+      "total_pole_positions": 23,
+      "total_race_wins": 5,
+      "total_points_scored": 1074,
+      "total_world_titles": 0,
+      "total_fastest_laps": 10
+    },
+    {
+      "name": "Carlos Sainz",
+      "team": "Scuderia Ferrari",
+      "age": 29,
+      "total_pole_positions": 5,
+      "total_race_wins": 2,
+      "total_points_scored": 982.5,
+      "total_world_titles": 0,
+      "total_fastest_laps": 3
+    },
+    {
+      "name": "Lando Norris",
+      "team": "McLaren",
+      "age": 24,
+      "total_pole_positions": 1,
+      "total_race_wins": 0,
+      "total_points_scored": 633,
+      "total_world_titles": 0,
+      "total_fastest_laps": 6
+    },
+    {
+      "name": "Oscar Piastri",
+      "team": "McLaren",
+      "age": 23,
+      "total_pole_positions": 0,
+      "total_race_wins": 0,
+      "total_points_scored": 129,
+      "total_world_titles": 0,
+      "total_fastest_laps": 2
+    },
+    {
+      "name": "Fernando Alonso",
+      "team": "Aston Martin Aramco",
+      "age": 42,
+      "total_pole_positions": 22,
+      "total_race_wins": 32,
+      "total_points_scored": 2267,
+      "total_world_titles": 2,
+      "total_fastest_laps": 24
+    },
+    {
+      "name": "Lance Stroll",
+      "team": "Aston Martin Aramco",
+      "age": 25,
+      "total_pole_positions": 1,
+      "total_race_wins": 0,
+      "total_points_scored": 268,
+      "total_world_titles": 0,
+      "total_fastest_laps": 0
+    },
+    {
+      "name": "Pierre Gasly",
+      "team": "Alpine",
+      "age": 28,
+      "total_pole_positions": 0,
+      "total_race_wins": 1,
+      "total_points_scored": 394,
+      "total_world_titles": 0,
+      "total_fastest_laps": 3
+    },
+    {
+      "name": "Esteban Ocon",
+      "team": "Alpine",
+      "age": 27,
+      "total_pole_positions": 0,
+      "total_race_wins": 1,
+      "total_points_scored": 422,
+      "total_world_titles": 0,
+      "total_fastest_laps": 0
+    },
+    {
+      "name": "Alexander Albon",
+      "team": "Williams Racing",
+      "age": 28,
+      "total_pole_positions": 0,
+      "total_race_wins": 0,
+      "total_points_scored": 228,
+      "total_world_titles": 0,
+      "total_fastest_laps": 0
+    },
+    {
+      "name": "Logan Sargeant",
+      "team": "Williams Racing",
+      "age": 23,
+      "total_pole_positions": 0,
+      "total_race_wins": 0,
+      "total_points_scored": 1,
+      "total_world_titles": 0,
+      "total_fastest_laps": 0
+    },
+    {
+      "name": "Daniel Ricciardo",
+      "team": "Visa Cash App RB",
+      "age": 34,
+      "total_pole_positions": 3,
+      "total_race_wins": 8,
+      "total_points_scored": 1317,
+      "total_world_titles": 0,
+      "total_fastest_laps": 16
+    },
+    {
+      "name": "Yuki Tsunoda",
+      "team": "Visa Cash App RB",
+      "age": 23,
+      "total_pole_positions": 0,
+      "total_race_wins": 0,
+      "total_points_scored": 67,
+      "total_world_titles": 0,
+      "total_fastest_laps": 1
+    },
+    {
+      "name": "Valtteri Bottas",
+      "team": "Stake F1 Team Kick Sauber",
+      "age": 34,
+      "total_pole_positions": 20,
+      "total_race_wins": 10,
+      "total_points_scored": 1797,
+      "total_world_titles": 0,
+      "total_fastest_laps": 19
+    },
+    {
+      "name": "Zhou Guanyu",
+      "team": "Stake F1 Team Kick Sauber",
+      "age": 24,
+      "total_pole_positions": 0,
+      "total_race_wins": 0,
+      "total_points_scored": 12,
+      "total_world_titles": 0,
+      "total_fastest_laps": 0
+    },
+    {
+      "name": "Kevin Magnussen",
+      "team": "Haas F1 Team",
+      "age": 31,
+      "total_pole_positions": 1,
+      "total_race_wins": 0,
+      "total_points_scored": 186,
+      "total_world_titles": 0,
+      "total_fastest_laps": 2
+    },
+    {
+      "name": "Nico Hülkenberg",
+      "team": "Haas F1 Team",
+      "age": 36,
+      "total_pole_positions": 1,
+      "total_race_wins": 0,
+      "total_points_scored": 530,
+      "total_world_titles": 0,
+      "total_fastest_laps": 2
+    }
+  ]

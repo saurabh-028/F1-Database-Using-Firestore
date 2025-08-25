@@ -1,0 +1,270 @@
+/* Reset and base styles */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Main content container */
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    flex: 1;
+}
+
+/* Card styling */
+.dashboard-card {
+    background: rgba(231, 6, 0, 0.8);
+    border-radius: 10px;
+    padding: 25px;
+    margin-bottom: 30px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+/* Grid layout for cards */
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+    margin: 30px 0;
+}
+
+/* Stats section */
+.stats-section {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    margin: 30px 0;
+}
+
+.stat-card {
+    background: rgba(20, 20, 20, 0.8);
+    padding: 20px;
+    border-radius: 8px;
+    border-left: 4px solid #E10600;
+}
+
+/* Table styling */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+}
+
+th, td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background-color: rgba(231, 6, 0, 0.6);
+    color: white;
+}
+
+/* Footer styling */
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    margin-top: 50px;
+}
+
+/* Spacing utilities */
+.mb-1 { margin-bottom: 10px; }
+.mb-2 { margin-bottom: 20px; }
+.mb-3 { margin-bottom: 30px; }
+.mb-4 { margin-bottom: 40px; }
+.mb-5 { margin-bottom: 50px; }
+
+.py-1 { padding-top: 10px; padding-bottom: 10px; }
+.py-2 { padding-top: 20px; padding-bottom: 20px; }
+.py-3 { padding-top: 30px; padding-bottom: 30px; }
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .card-grid, .stats-section {
+        grid-template-columns: 1fr;
+    }
+    
+    .container {
+        padding: 15px;
+    }
+}
+
+/* Add these to your existing styles.css */
+
+/* Team cards */
+.team-card {
+    background: rgba(20, 20, 20, 0.8);
+    border-radius: 10px;
+    border-left: 4px solid #E10600;
+    transition: transform 0.3s ease;
+}
+
+.team-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Comparison tables */
+.comparison-table th {
+    background-color: rgba(20, 20, 20, 0.9);
+    color: #E10600;
+}
+
+.comparison-table td.highlight {
+    background-color: rgba(231, 6, 0, 0.2);
+    font-weight: bold;
+}
+
+/* Dark mode form selects */
+.form-select {
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 1px solid #333;
+    color: white;
+}
+
+.form-select:focus {
+    background-color: rgba(255, 255, 255, 0.2);
+    border-color: #E10600;
+    box-shadow: 0 0 0 0.25rem rgba(225, 6, 0, 0.25);
+    color: white;
+}
+
+/* Badges */
+.badge {
+    font-size: 0.9rem;
+    padding: 0.4em 0.6em;
+}
+
+/* Chart container */
+.chart-container {
+    position: relative;
+    height: 300px;
+    width: 100%;
+}
+
+/* Query Page Specific Styles */
+.query-card {
+    background: rgba(20, 20, 20, 0.8);
+    border-radius: 8px;
+    border-left: 4px solid #E10600;
+}
+
+.query-card .card-header {
+    border-bottom: 1px solid rgba(231, 6, 0, 0.5);
+}
+
+.operator-select {
+    font-family: 'Arial', sans-serif;
+}
+
+.operator-select option[value="eq"]::before {
+    content: "= ";
+}
+
+.operator-select option[value="lt"]::before {
+    content: "< ";
+}
+
+.operator-select option[value="gt"]::before {
+    content: "> ";
+}
+
+.operator-select option[value="lte"]::before {
+    content: "≤ ";
+}
+
+.operator-select option[value="gte"]::before {
+    content: "≥ ";
+}
+
+/* Progress bars */
+.driver-progress {
+    height: 25px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+}
+
+.progress-bar-wins {
+    background-color: #E10600;
+    border-radius: 10px;
+}
+
+.progress-bar-poles {
+    background-color: #0dcaf0;
+    border-radius: 10px;
+}
+
+
+/* Link styles */
+a.text-danger:hover {
+    color: #ff5252 !important;
+}
+
+a.text-info:hover {
+    color: #4fc3f7 !important;
+}
+
+.team-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.team-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+}
+
+/* Button spacing */
+.btn-sm {
+    margin-right: 5px;
+    margin-bottom: 5px;
+}
+
+/* Edit buttons */
+.btn-warning {
+    background-color: #ffc107;
+    border-color: #ffc107;
+    color: #000;
+}
+
+.btn-warning:hover {
+    background-color: #e0a800;
+    border-color: #e0a800;
+    color: #000;
+}
+
+/* Form grids */
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+}
+
+@media (max-width: 768px) {
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Form elements */
+.form-control, .form-select {
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 1px solid #333;
+    color: white;
+}
+
+.form-control:focus, .form-select:focus {
+    background-color: rgba(255, 255, 255, 0.2);
+    border-color: #E10600;
+    box-shadow: 0 0 0 0.25rem rgba(225, 6, 0, 0.25);
+    color: rgb(5, 5, 5);
+}

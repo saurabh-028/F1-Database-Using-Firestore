@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compare | F1 Manager</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', path='/styles.css') }}">
+    <style>
+        .better-stat {
+            background-color: #28a745 !important;
+            color: white !important;
+            font-weight: bold;
+        }
+        .table-dark {
+            background-color: #212529;
+        }
+        .table-dark th, .table-dark td {
+            border-color: #373b3e;
+        }
+    </style>
+</head>
+<body class="f1-dashboard">
+    {% include "navbar.html" %}
+
+    <div class="container py-5">
+        <div class="row mb-4">
+            <div class="col">
+                <h1 class="display-4 fw-bold">
+                    <i class="fas fa-balance-scale me-2"></i>Compare
+                </h1>
+                <p class="lead">Compare drivers and teams head-to-head</p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card bg-dark text-white mb-4">
+                    <div class="card-header bg-danger">
+                        <h4><i class="fas fa-user me-2"></i>Compare Drivers</h4>
+                    </div>
+                    <div class="card-body">
+                        <form id="compare-drivers-form">
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <select class="form-select" id="driver1">
+                                        <option value="">Select Driver 1</option>
+                                        {% for driver in drivers %}
+                                        <option value="{{ driver.name }}">{{ driver.name }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <select class="form-select" id="driver2">
+                                        <option value="">Select Driver 2</option>
+                                        {% for driver in drivers %}
+                                        <option value="{{ driver.name }}">{{ driver.name }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            </div>
+                            <button type="button" class="btn btn-danger" onclick="compareDrivers()">
+                                <i class="fas fa-users me-1"></i> Compare
+                            </button>
+                        </form>
+                        <div id="driver-comparison-result" class="mt-4"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="card bg-dark text-white">
+                    <div class="card-header bg-danger">
+                        <h4><i class="fas fa-users me-2"></i>Compare Teams</h4>
+                    </div>
+                    <div class="card-body">
+                        <form id="compare-teams-form">
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <select class="form-select" id="team1">
+                                        <option value="">Select Team 1</option>
+                                        {% for team in teams %}
+                                        <option value="{{ team.name }}">{{ team.name }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <select class="form-select" id="team2">
+                                        <option value="">Select Team 2</option>
+                                        {% for team in teams %}
+                                        <option value="{{ team.name }}">{{ team.name }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            </div>
+                            <button type="button" class="btn btn-danger" onclick="compareTeams()">
+                                <i class="fas fa-users me-1"></i> Compare
+                            </button>
+                        </form>
+                        <div id="team-comparison-result" class="mt-4"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% include "footer.html" %}
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        function compareDrivers() {
+            const driver1Name = document.getElementById('driver1').value;
+            const driver2Name = document.getElementById('driver2').value;
+            
+            if (!driver1Name || !driver2Name) {
+                alert('Please select both drivers to compare');
+                return;
+            }
+            
+            const drivers = {{ drivers|tojson }};
+            const driver1 = drivers.find(d => d.name === driver1Name);
+            const driver2 = drivers.find(d => d.name === driver2Name);
+            
+            if (!driver1 || !driver2) {
+                alert('Driver data not found');
+                return;
+            }
+            
+            // Define comparable stats
+            const comparableStats = [
+                { 
+                    name: 'Points', 
+                    val1: driver1.total_points_scored || 0, 
+                    val2: driver2.total_points_scored || 0,
+                    lowerBetter: false
+                },
+                { 
+                    name: 'Race Wins', 
+                    val1: driver1.total_race_wins || 0, 
+                    val2: driver2.total_race_wins || 0,
+                    lowerBetter: false
+                },
+                { 
+                    name: 'Pole Positions', 
+                    val1: driver1.total_pole_positions || 0, 
+                    val2: driver2.total_pole_positions || 0,
+                    lowerBetter: false
+                },
+                { 
+                    name: 'World Titles', 
+                    val1: driver1.total_world_titles || 0, 
+                    val2: driver2.total_world_titles || 0,
+                    lowerBetter: false
+                },
+                { 
+                    name: 'Fastest Laps', 
+                    val1: driver1.total_fastest_laps || 0, 
+                    val2: driver2.total_fastest_laps || 0,
+                    lowerBetter: false
+                }
+            ];
+            
+            // Create comparison table
+            let tableHTML = `
+                <h5 class="text-center mb-4">${driver1Name} vs ${driver2Name}</h5>
+                <div class="table-responsive">
+                    <table class="table table-dark table-hover">
+                        <thead>
+                            <tr>
+                                <th>Stat</th>
+                                <th>${driver1Name}</th>
+                                <th>${driver2Name}</th>
+                            </tr>
+                        </thead>
+                        <tbody>`;
+            
+            // Add name row (not compared)
+            tableHTML += `
+                <tr>
+                    <td>Name</td>
+                    <td>${driver1.name}</td>
+                    <td>${driver2.name}</td>
+                </tr>`;
+            
+            // Add team row (not compared)
+            tableHTML += `
+                <tr>
+                    <td>Team</td>
+                    <td>${driver1.team || 'N/A'}</td>
+                    <td>${driver2.team || 'N/A'}</td>
+                </tr>`;
+            
+            // Add comparable stats
+            comparableStats.forEach(stat => {
+                let td1Class = '';
+                let td2Class = '';
+                
+                const val1Num = parseFloat(stat.val1) || 0;
+                const val2Num = parseFloat(stat.val2) || 0;
+                
+                if (val1Num !== val2Num) {
+                    if (stat.lowerBetter) {
+                        td1Class = val1Num < val2Num ? 'better-stat' : '';
+                        td2Class = val2Num < val1Num ? 'better-stat' : '';
+                    } else {
+                        td1Class = val1Num > val2Num ? 'better-stat' : '';
+                        td2Class = val2Num > val1Num ? 'better-stat' : '';
+                    }
+                }
+                
+                tableHTML += `
+                    <tr>
+                        <td>${stat.name}</td>
+                        <td class="${td1Class}">${stat.val1}</td>
+                        <td class="${td2Class}">${stat.val2}</td>
+                    </tr>`;
+            });
+            
+            tableHTML += `
+                        </tbody>
+                    </table>
+                </div>`;
+            
+            document.getElementById('driver-comparison-result').innerHTML = tableHTML;
+        }
+        
+        function compareTeams() {
+            const team1Name = document.getElementById('team1').value;
+            const team2Name = document.getElementById('team2').value;
+            
+            if (!team1Name || !team2Name) {
+                alert('Please select both teams to compare');
+                return;
+            }
+            
+            const teams = {{ teams|tojson }};
+            const team1 = teams.find(t => t.name === team1Name);
+            const team2 = teams.find(t => t.name === team2Name);
+            
+            if (!team1 || !team2) {
+                alert('Team data not found');
+                return;
+            }
+            
+            // Define comparable stats with proper field names
+            const comparableStats = [
+                { 
+                    name: 'Constructor Titles', 
+                    val1: team1.championships || team1.constructor_titles || 0, 
+                    val2: team2.championships || team2.constructor_titles || 0,
+                    lowerBetter: false  // Higher is better
+                },
+                { 
+                    name: 'Previous Season', 
+                    val1: team1.finishing_position || team1.previous_season || 0, 
+                    val2: team2.finishing_position || team2.previous_season || 0,
+                    lowerBetter: true  // Lower is better
+                },
+                { 
+                    name: 'Total Race Wins', 
+                    val1: team1.race_wins || team1.total_race_wins || 0, 
+                    val2: team2.race_wins || team2.total_race_wins || 0,
+                    lowerBetter: false  // Higher is better
+                },
+                { 
+                    name: 'Total Pole Positions', 
+                    val1: team1.pole_positions || team1.total_pole_positions || 0, 
+                    val2: team2.pole_positions || team2.total_pole_positions || 0,
+                    lowerBetter: false  // Higher is better
+                }
+            ];
+            
+            // Create comparison table
+            let tableHTML = `
+                <h5 class="text-center mb-4">${team1Name} vs ${team2Name}</h5>
+                <div class="table-responsive">
+                    <table class="table table-dark table-hover">
+                        <thead>
+                            <tr>
+                                <th>Stat</th>
+                                <th>${team1Name}</th>
+                                <th>${team2Name}</th>
+                            </tr>
+                        </thead>
+                        <tbody>`;
+            
+            // Add name row (not compared)
+            tableHTML += `
+                <tr>
+                    <td>Name</td>
+                    <td>${team1.name}</td>
+                    <td>${team2.name}</td>
+                </tr>`;
+            
+            // Add principal row (not compared)
+            tableHTML += `
+                <tr>
+                    <td>Team Principal</td>
+                    <td>${team1.principal || 'N/A'}</td>
+                    <td>${team2.principal || 'N/A'}</td>
+                </tr>`;
+            
+            // Add base row (not compared)
+            tableHTML += `
+                <tr>
+                    <td>Base Location</td>
+                    <td>${team1.base || team1.headquarters || 'N/A'}</td>
+                    <td>${team2.base || team2.headquarters || 'N/A'}</td>
+                </tr>`;
+            
+            // Add comparable stats
+            comparableStats.forEach(stat => {
+                let td1Class = '';
+                let td2Class = '';
+                
+                const val1Num = parseFloat(stat.val1) || 0;
+                const val2Num = parseFloat(stat.val2) || 0;
+                
+                if (val1Num !== val2Num) {
+                    if (stat.lowerBetter) {
+                        td1Class = val1Num < val2Num ? 'better-stat' : '';
+                        td2Class = val2Num < val1Num ? 'better-stat' : '';
+                    } else {
+                        td1Class = val1Num > val2Num ? 'better-stat' : '';
+                        td2Class = val2Num > val1Num ? 'better-stat' : '';
+                    }
+                }
+                
+                tableHTML += `
+                    <tr>
+                        <td>${stat.name}</td>
+                        <td class="${td1Class}">${stat.val1}</td>
+                        <td class="${td2Class}">${stat.val2}</td>
+                    </tr>`;
+            });
+            
+            tableHTML += `
+                        </tbody>
+                    </table>
+                </div>`;
+            
+            document.getElementById('team-comparison-result').innerHTML = tableHTML;
+        }
+    </script>
+</body>
+</html>

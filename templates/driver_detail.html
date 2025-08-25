@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ driver.name }} | F1 Manager</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', path='/styles.css') }}">
+    <style>
+        .driver-progress {
+            height: 25px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+        }
+        .progress-bar-wins {
+            background-color: #E10600;
+            border-radius: 10px;
+        }
+        .progress-bar-poles {
+            background-color: #0dcaf0;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body class="f1-dashboard">
+    {% if user_token %}
+        {% include "navbar.html" %}
+    {% else %}
+        {% include "public_navbar.html" %}
+    {% endif %}
+
+    <div class="container py-5">
+        <div class="row mb-4">
+            <div class="col">
+                <h1 class="display-4 fw-bold">
+                    <i class="fas fa-user me-2"></i>{{ driver.name }}
+                </h1>
+                <p class="lead">{{ driver.team }} Driver</p>
+                
+                {% if user_token %}
+                <div class="mb-4">
+                    <a href="/edit-driver/{{ driver.name }}" class="btn btn-warning me-2">
+                        <i class="fas fa-edit me-1"></i> Edit Driver
+                    </a>
+                    <form action="/delete-driver/{{ driver.name }}" method="post" class="d-inline" 
+                          onsubmit="return confirm('Are you sure you want to delete {{ driver.name }}?')">
+                        <button type="submit" class="btn btn-danger">
+                            <i class="fas fa-trash me-1"></i> Delete Driver
+                        </button>
+                    </form>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card bg-dark text-white mb-4">
+                    <div class="card-header bg-danger">
+                        <h4><i class="fas fa-info-circle me-2"></i>Driver Information</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <p><strong>Team:</strong> <a href="/team/{{ driver.team }}" class="text-danger">{{ driver.team }}</a></p>
+                                <p><strong>Age:</strong> {{ driver.age }}</p>
+                                <p><strong>Points Scored:</strong> {{ driver.total_points_scored }}</p>
+                            </div>
+                            <div class="col-md-6">
+                                <p><strong>Race Wins:</strong> {{ driver.total_race_wins }}</p>
+                                <p><strong>Pole Positions:</strong> {{ driver.total_pole_positions }}</p>
+                                <p><strong>World Titles:</strong> {{ driver.total_world_titles }}</p>
+                                <p><strong>Fastest Laps:</strong> {{ driver.total_fastest_laps }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card bg-dark text-white">
+                    <div class="card-header bg-danger">
+                        <h4><i class="fas fa-trophy me-2"></i>Career Highlights</h4>
+                    </div>
+                    <div class="card-body">
+                        {% if driver.total_world_titles > 0 %}
+                        <div class="alert alert-warning">
+                            <i class="fas fa-crown me-2"></i>
+                            {{ driver.name }} is a {{ driver.total_world_titles }}-time World Champion!
+                        </div>
+                        {% endif %}
+                        <div class="progress driver-progress mb-3">
+                            <div class="progress-bar progress-bar-wins" 
+                                 id="wins-progress"
+                                 role="progressbar" 
+                                 aria-valuenow="{{ driver.total_race_wins }}" 
+                                 aria-valuemin="0" 
+                                 aria-valuemax="50">
+                                {{ driver.total_race_wins }} Wins
+                            </div>
+                        </div>
+                        <div class="progress driver-progress mb-3">
+                            <div class="progress-bar progress-bar-poles" 
+                                 id="poles-progress"
+                                 role="progressbar" 
+                                 aria-valuenow="{{ driver.total_pole_positions }}" 
+                                 aria-valuemin="0" 
+                                 aria-valuemax="50">
+                                {{ driver.total_pole_positions }} Poles
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% include "footer.html" %}
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const wins = {{ driver.total_race_wins }};
+            const poles = {{ driver.total_pole_positions }};
+            
+            const winsWidth = Math.min(wins, 50);
+            const polesWidth = Math.min(poles, 50);
+            
+            document.getElementById('wins-progress').style.width = winsWidth + '%';
+            document.getElementById('poles-progress').style.width = polesWidth + '%';
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,102 @@
+[
+    {
+      "name": "Red Bull Racing",
+      "principal": "Christian Horner",
+      "year_founded": 2005,
+      "total_pole_positions": 85,
+      "total_race_wins": 92,
+      "total_constructor_titles": 5,
+      "previous_season_position": 1,
+      "base": "Milton Keynes, UK"
+    },
+    {
+      "name": "Mercedes-AMG Petronas",
+      "principal": "Toto Wolff",
+      "year_founded": 2010,
+      "total_pole_positions": 128,
+      "total_race_wins": 124,
+      "total_constructor_titles": 8,
+      "previous_season_position": 3,
+      "base": "Brackley, UK"
+    },
+    {
+      "name": "Scuderia Ferrari",
+      "principal": "Frédéric Vasseur",
+      "year_founded": 1950,
+      "total_pole_positions": 242,
+      "total_race_wins": 243,
+      "total_constructor_titles": 16,
+      "previous_season_position": 2,
+      "base": "Maranello, Italy"
+    },
+    {
+      "name": "McLaren",
+      "principal": "Andrea Stella",
+      "year_founded": 1966,
+      "total_pole_positions": 156,
+      "total_race_wins": 183,
+      "total_constructor_titles": 8,
+      "previous_season_position": 4,
+      "base": "Woking, UK"
+    },
+    {
+      "name": "Aston Martin Aramco",
+      "principal": "Mike Krack",
+      "year_founded": 2021,
+      "total_pole_positions": 1,
+      "total_race_wins": 0,
+      "total_constructor_titles": 0,
+      "previous_season_position": 5,
+      "base": "Silverstone, UK"
+    },
+    {
+      "name": "Alpine",
+      "principal": "Bruno Famin",
+      "year_founded": 2021,
+      "total_pole_positions": 0,
+      "total_race_wins": 1,
+      "total_constructor_titles": 0,
+      "previous_season_position": 6,
+      "base": "Enstone, UK"
+    },
+    {
+      "name": "Williams Racing",
+      "principal": "James Vowles",
+      "year_founded": 1977,
+      "total_pole_positions": 128,
+      "total_race_wins": 114,
+      "total_constructor_titles": 9,
+      "previous_season_position": 7,
+      "base": "Grove, UK"
+    },
+    {
+      "name": "Visa Cash App RB",
+      "principal": "Laurent Mekies",
+      "year_founded": 2006,
+      "total_pole_positions": 1,
+      "total_race_wins": 1,
+      "total_constructor_titles": 0,
+      "previous_season_position": 8,
+      "base": "Faenza, Italy"
+    },
+    {
+      "name": "Stake F1 Team Kick Sauber",
+      "principal": "Alessandro Alunni Bravi",
+      "year_founded": 1993,
+      "total_pole_positions": 1,
+      "total_race_wins": 1,
+      "total_constructor_titles": 0,
+      "previous_season_position": 9,
+      "base": "Hinwil, Switzerland"
+    },
+    {
+      "name": "Haas F1 Team",
+      "principal": "Ayao Komatsu",
+      "year_founded": 2016,
+      "total_pole_positions": 1,
+      "total_race_wins": 0,
+      "total_constructor_titles": 0,
+      "previous_season_position": 10,
+      "base": "Kannapolis, USA"
+    }
+  ]

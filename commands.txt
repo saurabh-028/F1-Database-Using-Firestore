@@ -1,0 +1,19 @@
+python -m venv venv
+
+pip install -r requirements.txt
+
+# Do this after changing firebase configuration 
+>> Get-Process -Name "uvicorn" -ErrorAction SilentlyContinue | Stop-Process -Force
+
+# Delete all .pyc files
+
+>> Get-ChildItem -Path . -Recurse -Filter "*.pyc" | Remove-Item -Force
+>>
+>> # Delete all __pycache__ folders
+>> Get-ChildItem -Path . -Recurse -Filter "__pycache__" | Remove-Item -Recurse -Force
+
+#To set service account creadentials in env
+$env:GOOGLE_APPLICATION_CREDENTIALS ="serviceAccount.json"
+
+# to start web-app fastapi
+uvicorn main:app --reload

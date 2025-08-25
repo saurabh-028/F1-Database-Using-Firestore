@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Team | F1 Manager</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', path='/styles.css') }}">
+    <style>
+        .team-form-container {
+            background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), 
+                        url('/static/images/f1-team.jpg') no-repeat center center;
+            background-size: cover;
+            min-height: 100vh;
+            color: white;
+            padding: 2rem 0;
+        }
+        
+        .team-form {
+            max-width: 600px;
+            margin: 0 auto;
+            background: rgba(20, 20, 20, 0.9);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(231, 6, 0, 0.5);
+            border-top: 4px solid #E10600;
+        }
+    </style>
+</head>
+<body class="team-form-container">
+    <div class="container">
+        <div class="team-form">
+            <div class="form-header text-center mb-4">
+                <h1><i class="fas fa-plus-circle me-2"></i>Add New Team</h1>
+                <p class="text-muted">Register a new F1 constructor team</p>
+            </div>
+            
+            <form method="post" action="/add-team">
+                <div class="mb-3">
+                    <label class="form-label">Team Name</label>
+                    <input type="text" class="form-control" name="name" required>
+                </div>
+                
+                <div class="mb-3">
+                    <label class="form-label">Team Principal</label>
+                    <input type="text" class="form-control" name="principal" required>
+                </div>
+                
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">World Championships</label>
+                        <input type="number" class="form-control" name="championships" min="0" required>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">Year Founded</label>
+                        <input type="number" class="form-control" name="founded" min="1950" max="2023" required>
+                    </div>
+                </div>
+                
+                <div class="mb-3">
+                    <label class="form-label">Base Location</label>
+                    <input type="text" class="form-control" name="base" required>
+                </div>
+                
+                <div class="text-center mt-4">
+                    <button type="submit" class="btn btn-danger btn-lg">
+                        <i class="fas fa-save me-2"></i>Add Team
+                    </button>
+                    <a href="/teams" class="btn btn-secondary btn-lg ms-2">
+                        <i class="fas fa-times me-2"></i>Cancel
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

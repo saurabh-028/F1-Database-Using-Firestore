@@ -4,12 +4,7 @@ import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, si
 
 // Your Firebase configuration
 const firebaseConfig = {
-    apiKey: "AIzaSyBpT-N-JFEeztcWFXsBIoE6ayy_bR4zL3k",
-    authDomain: "f1-racing-c1506.firebaseapp.com",
-    projectId: "f1-racing-c1506",
-    storageBucket: "f1-racing-c1506.firebasestorage.app",
-    messagingSenderId: "428068897753",
-    appId: "1:428068897753:web:77c2ec2e83b2e870c94fc8"
+    
   };
 
 window.addEventListener("load", function () {
@@ -121,4 +116,5 @@ function parseCookieToken(cookie) {
         if (temp[0] === "token") return temp[1];
     }
     return "";
+
 }
